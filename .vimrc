@@ -15,6 +15,7 @@ set nobackup
 set undodir=/.vim/undodir
 set undofile
 set incsearch
+set cursorline
 
 " Lightline config
 set laststatus=2
@@ -51,6 +52,16 @@ Plug 'dense-analysis/ale'
 
 " Status bar
 Plug 'itchyny/lightline.vim'
+
+" Find files
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Show the vertical lines 
+Plug 'Yggdroot/indentLine'
+
+" Show colors on hex
+Plug 'etdev/vim-hexcolor'
 call plug#end()
 
 " Gruvbox config
