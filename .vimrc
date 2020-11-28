@@ -61,7 +61,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 
 " Show colors on hex
-Plug 'etdev/vim-hexcolor'
+Plug 'ap/vim-css-color'
+
+" Files explore
+Plug 'preservim/nerdtree'
 call plug#end()
 
 " Gruvbox config
