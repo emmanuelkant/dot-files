@@ -81,3 +81,9 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+
+" use 256 colors in terminal
+if !has("gui_running")
+    set t_Co=256
+    set term=screen-256color
+endif
