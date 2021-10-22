@@ -1,89 +1,60 @@
 syntax on
-
+set relativenumber
+set nu
+set cursorline
 set nohlsearch
+set hidden
 set noerrorbells
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set smartcase
-set number
-set relativenumber
-set nowrap
-set noswapfile
-set nobackup
-set undodir=/.vim/undodir
-set undofile
-set incsearch
-set cursorline
 
-" Lightline config
-set laststatus=2
-set noshowmode
-let g:lightline = {
-\   'colorscheme': 'wombat',
-\ }
+call plug#begin('~/.vim/plugged')
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-
-call plug#begin()
-" Theme
-Plug 'morhetz/gruvbox'
-
-" Git Plugin
-Plug 'tpope/vim-fugitive'
-
-" Syntax for many languages
+Plug 'gruvbox-community/gruvbox'
+Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
-
-" For put {} [] () and others stuffs around anything
-Plug 'tpope/vim-surround'
-
-" Load the .editorconfig file
 Plug 'editorconfig/editorconfig-vim'
-
-" Help a lot with HTML's build
-Plug 'mattn/emmet-vim'
-
-" Load and execute eslint file
-Plug 'dense-analysis/ale'
-
-" Status bar
-Plug 'itchyny/lightline.vim'
-
-" Find files
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'bronson/vim-trailing-whitespace'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Show the vertical lines 
-Plug 'Yggdroot/indentLine'
-
-" Show colors on hex
-Plug 'ap/vim-css-color'
-
-" Files explore
-Plug 'preservim/nerdtree'
 call plug#end()
 
-" Gruvbox config
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_invert_selection=0
-set background=dark
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" Colorscheme setting
-colorscheme gruvbox
+" Coc configs
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
 
 let mapleader = " "
 
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+" Moviments
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
 
-" use 256 colors in terminal
-if !has("gui_running")
-    set t_Co=256
-    set term=screen-256color
-endif
+set t_Co=256
+set background=dark
+colorscheme gruvbox
